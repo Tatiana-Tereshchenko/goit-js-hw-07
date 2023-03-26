@@ -53,7 +53,5 @@ instance.close();
 function onEsPress(event) {
 if ( event.key === "Escape") 
     
-
-
 instance.show();     
 }

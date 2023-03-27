@@ -23,35 +23,30 @@ ulEl.insertAdjacentHTML('beforeend', galleryMarcup)
 
 console.log(galleryItems);
 
+
 ulEl.addEventListener('click', onClick);
 
 function onClick(event) {
-    event.preventDefault()
-    
-if (event.target.classList.contains('gallery__image')) {
+event.preventDefault();
+
+    if (event.target.classList.contains('gallery__image')) {
     const imgSrc = event.target.dataset.source;
     const instance = basicLightbox.create(`
-    <img src="${imgSrc}" width="800" height="600">
-    `,
-{
-    onShow: (instance) => {
-        window.addEventListener('keydown', onEsPress);
-        function onEsPress(event) {
-if ( event.key === "Escape") 
-    
-instance.close();    
-}
-},
-    onClose: (instance) => {
-    window.removeEventListener('keydown', onEsPress);
-    },
+        <img src="${imgSrc}" width="800" height="600">
+    `, {
+        onShow: (instance) => {
+        window.addEventListener('keydown', onEscapePress);
+        },
+        onClose: (instance) => {
+        window.removeEventListener('keydown', onEscapePress);
+        },
     });
     instance.show();
     }
 }
 
-function onEsPress(event) {
-if ( event.key === "Escape") 
-    
-instance.show();     
+function onEscapePress(event) {
+    if (event.key === 'Escape') {
+    instance.close();
+    }
 }

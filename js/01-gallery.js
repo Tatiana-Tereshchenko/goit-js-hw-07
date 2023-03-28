@@ -29,7 +29,7 @@ ulEl.addEventListener('click', onClick);
 function onClick(event) {
 event.preventDefault();
 
-    if (event.target.classList.contains('gallery__image')) {
+if (!event.target.classList.contains('gallery__image')) return;  {
     const imgSrc = event.target.dataset.source;
     const instance = basicLightbox.create(`
         <img src="${imgSrc}" width="800" height="600">
@@ -41,12 +41,15 @@ event.preventDefault();
         window.removeEventListener('keydown', onEscapePress);
         },
     });
-    instance.show();
-    }
-}
-
-function onEscapePress(event) {
+        instance.show();
+        function onEscapePress(event) {
     if (event.key === 'Escape') {
     instance.close();
     }
 }
+    }
+
+}
+
+
+
